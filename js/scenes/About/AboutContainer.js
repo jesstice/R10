@@ -16,6 +16,12 @@ class AboutContainer extends Component {
     };
   }
 
+  static route = {
+    navigationBar: {
+      title: 'About',
+    }
+  }
+
   componentDidMount() {
     let endpoint = "https://r10app-95fea.firebaseio.com/code_of_conduct.json";
     fetch(endpoint)
