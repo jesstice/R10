@@ -6,7 +6,11 @@ import {
   NavigationContext,
   NavigationProvider,
   StackNavigation,
+  NavigationStyles
 } from '@expo/ex-navigation';
+import {
+  StatusBar
+} from 'react-native';
 
 const navigationContext = new NavigationContext({
   router: Router,
@@ -18,9 +22,13 @@ export default class R10 extends Component {
     return (
       <Provider store={Store}>
         <NavigationProvider context={navigationContext}>
+          <StatusBar barStyle="light-content" />
           <StackNavigation
             navigatorUID="root"
-            initialRoute={Router.getRoute('about')}
+            initialRoute={Router.getRoute('navigationLayout')}
+            defaultRouteConfig={{
+              styles: { ...NavigationStyles.SlideVertical }
+            }}
           />
         </NavigationProvider>
       </Provider>
