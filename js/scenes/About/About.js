@@ -30,7 +30,7 @@ const About = ({ conduct }) => {
               <Text style={styles.subheading}>{item.title}</Text>
               <Text>{item.description}</Text>
             </View>}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.title}
         />
       </View>
     </View>
@@ -38,7 +38,10 @@ const About = ({ conduct }) => {
 }
 
 About.propTypes = {
-
+  conduct: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string
+  }).isRequired
 }
 
 export default About;
