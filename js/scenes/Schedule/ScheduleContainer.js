@@ -16,6 +16,12 @@ class ScheduleContainer extends Component {
     };
   }
 
+  static route = {
+    navigationBar: {
+      title: 'Schedule',
+    }
+  }
+
   componentDidMount() {
     let endpoint = "https://r10app-95fea.firebaseio.com/sessions.json";
     fetch(endpoint)
@@ -44,7 +50,7 @@ class ScheduleContainer extends Component {
      } else {
       return (
         <Schedule 
-          scheduleData={data}
+          scheduleData={this.state.data}
         />
       );
      }

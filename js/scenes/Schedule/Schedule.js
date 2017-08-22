@@ -20,19 +20,20 @@ const Schedule = ({ scheduleData }) => {
             <Text style={styles.subheading}>{item.location}</Text>
           </View>
         }
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.title}
       />
     </View>
   );
 }
 
 Schedule.propTypes = {
-  scheduleData: PropTypes.shape({
-    location: PropTypes.string,
-    title: PropTypes.string,
-    start_time: PropTypes.number,
-  }),
-  renderItem: PropTypes.func.isRequired,
+  scheduleData: PropTypes.arrayOf(
+    PropTypes.shape({
+      location: PropTypes.string,
+      title: PropTypes.string,
+      start_time: PropTypes.number,
+  })),
+  renderItem: PropTypes.func,
   data: PropTypes.shape({
     location: PropTypes.string,
     title: PropTypes.string,

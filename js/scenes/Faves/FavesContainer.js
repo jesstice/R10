@@ -11,9 +11,14 @@ class FavesContainer extends Component {
   constructor() {
     super();
     this.state = {
-      data: [],
       isLoading: true,
     };
+  }
+
+  static route = {
+    navigationBar: {
+      title: 'Faves',
+    }
   }
 
   // componentDidMount() {
