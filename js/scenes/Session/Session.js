@@ -4,12 +4,13 @@ import {
   Text,
   View,
   Image,
-  Button
+  Button,
+  TouchableOpacity
 } from 'react-native';
 import Moment from 'moment';
 import { styles } from './styles';
 
-const Sessions = ({ sessionData, speakerData, linkToWikipedia }) => {
+const Session = ({ sessionData, speakerData, linkToWikipedia, popSpeaker }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -20,10 +21,12 @@ const Sessions = ({ sessionData, speakerData, linkToWikipedia }) => {
       </View>
       <View style={styles.contentContainer}>
         <Text>Presented By:</Text>
-        <Image
-          style={styles.image}
-          source={{ uri: speakerData.image }}
-        />
+        <TouchableOpacity onPress={() => popSpeaker(speakerData)}>
+          <Image
+            style={styles.image}
+            source={{ uri: speakerData.image }}
+          />
+        </TouchableOpacity>
         <Text>{speakerData.name}</Text>
       </View>
       <Button
@@ -36,7 +39,7 @@ const Sessions = ({ sessionData, speakerData, linkToWikipedia }) => {
   );
 }
 
-Sessions.propTypes = {
+Session.propTypes = {
   sessionData: PropTypes.shape({
     location: PropTypes.string,
     title: PropTypes.string,
@@ -46,4 +49,4 @@ Sessions.propTypes = {
   })
 }
 
-export default Sessions;
+export default Session;

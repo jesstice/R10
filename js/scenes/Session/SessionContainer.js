@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Sessions from './Sessions';
+import Session from './Session';
 import {
   ActivityIndicator
 } from 'react-native';
 import { fetchSpeakerData } from '../../redux/modules/session';
 import { goToSpeaker } from '../../navigation/navigationHelpers';
 
-class SessionsContainer extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      isLoading: true,
-    };
-  }
+class SessionContainer extends Component {
 
   componentDidMount() {
     const { speaker } = this.props.sessionData;
@@ -38,10 +30,11 @@ class SessionsContainer extends Component {
       );
     } else {
       return (
-        <Sessions 
+        <Session
           sessionData={this.props.sessionData}
-          speakerData={this.props.data[0]}
+          speakerData={this.props.data}
           linkToWikipedia={this.linkToWikipedia}
+          popSpeaker={this.popSpeakerScene}
         />
       );
     }
@@ -56,16 +49,16 @@ class SessionsContainer extends Component {
       speaker: PropTypes.string
     }),
     loading: PropTypes.bool.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        bio: PropTypes.string,
-        name: PropTypes.string,
-        image: PropTypes.string,
-        speaker_id: PropTypes.string,
-        session: PropTypes.string,
-        url: PropTypes.string
-      })
-    ),
+    // data: PropTypes.objectOf(
+    //   PropTypes.shape({
+    //     bio: PropTypes.string,
+    //     name: PropTypes.string,
+    //     image: PropTypes.string,
+    //     speaker_id: PropTypes.string,
+    //     session: PropTypes.string,
+    //     url: PropTypes.string
+    //   })
+    // ),
     dispatch: PropTypes.func
   }
 }
@@ -77,4 +70,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(SessionsContainer);
+export default connect(mapStateToProps)(SessionContainer);

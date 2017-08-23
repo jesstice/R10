@@ -3,7 +3,7 @@ import Navigation from './NavigationLayout'
 import About from '../scenes/About/';
 import Faves from '../scenes/Faves/';
 import Schedule from '../scenes/Schedule/';
-import Sessions from '../scenes/Sessions/';
+import Session from '../scenes/Session/';
 import Speaker from '../scenes/Speaker/';
 
 export const Router = createRouter(() => ({
@@ -11,6 +11,6 @@ export const Router = createRouter(() => ({
   about: () => About,
   faves: () => Faves,
   schedule: () => Schedule,
-  session: () => Sessions,
+  session: () => Session,
   speaker: () => Speaker
 }));

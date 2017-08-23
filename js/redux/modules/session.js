@@ -1,3 +1,5 @@
+import { formatDataObject } from '../../lib/dataFormatHelpers';
+
 export const LOAD_SPEAKER_DATA = 'LOAD_SPEAKER_DATA';
 
 export function loadSpeakerData(speakerData) {
@@ -10,11 +12,10 @@ export function loadSpeakerData(speakerData) {
 export function fetchSpeakerData(speakerID) {
   return function (dispatch) {
     fetch(`https://r10app-95fea.firebaseio.com/speakers.json?orderBy="speaker_id"&equalTo="${speakerID}"`)
+      .then(response => response.json())
       .then(response => {
-        return response.json()
-      })
-      .then(response => {
-        return dispatch(loadSpeakerData(response))
+        let speakerData = formatDataObject(response)
+        dispatch(loadSpeakerData(speakerData))
       })
       .catch(errors => {
         return console.log(errors)
