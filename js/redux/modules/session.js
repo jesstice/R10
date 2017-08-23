@@ -1,20 +1,20 @@
-export const LOAD_SESSION_DATA = 'LOAD_SESSION_DATA';
+export const LOAD_SPEAKER_DATA = 'LOAD_SPEAKER_DATA';
 
-export function loadSessionData(sessionData) {
+export function loadSpeakerData(speakerData) {
   return {
-    type: LOAD_SESSION_DATA,
-    payload: sessionData
+    type: LOAD_SPEAKER_DATA,
+    payload: speakerData
   }
 }
 
-export function fetchSessionData() {
+export function fetchSpeakerData(speakerID) {
   return function (dispatch) {
-    fetch("https://r10app-95fea.firebaseio.com/sessions.json")
+    fetch(`https://r10app-95fea.firebaseio.com/speakers.json?orderBy="speaker_id"&equalTo="${speakerID}"`)
       .then(response => {
         return response.json()
       })
       .then(response => {
-        return dispatch(loadSessionData(response))
+        return dispatch(loadSpeakerData(response))
       })
       .catch(errors => {
         return console.log(errors)
@@ -24,16 +24,16 @@ export function fetchSessionData() {
 
 const initialState = {
   loading: true,
-  sessionData: []
+  speakerData: []
 }
 
 export function sessionReducer(state = initialState, action) {
   switch (action.type) {
-    case LOAD_SESSION_DATA:
+    case LOAD_SPEAKER_DATA:
       const loadState = {
         ...state,
         loading: false,
-        sessionData: action.payload
+        speakerData: action.payload
       }
       return loadState;
     default:

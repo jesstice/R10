@@ -9,7 +9,7 @@ import {
 import Moment from 'moment';
 import { styles } from './styles';
 
-const Sessions = ({ sessionData }) => {
+const Sessions = ({ sessionData, speakerData, linkToWikipedia }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -20,14 +20,14 @@ const Sessions = ({ sessionData }) => {
       </View>
       <View style={styles.contentContainer}>
         <Text>Presented By:</Text>
-        {/* <Image
+        <Image
           style={styles.image}
-          source={{ uri: sessionData.image }}
-        /> */}
-        <Text>{sessionData.speaker}</Text>
+          source={{ uri: speakerData.image }}
+        />
+        <Text>{speakerData.name}</Text>
       </View>
       <Button
-        // onPress={onPressLearnMore}
+        onPress={() => linkToWikipedia(speakerData.url)}
         style={styles.button}
         title="Remove from Faves"
         accessibilityLabel="Remove session from faves"
