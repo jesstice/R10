@@ -14,7 +14,8 @@ const defaultRouteConfig = {
       tintColor: 'blue'
   },
   // renderBackground: () => (
-  //     // returning some component for the background...
+    // react native linear gradient
+    // returning some component for the background...
   // );
 }
 

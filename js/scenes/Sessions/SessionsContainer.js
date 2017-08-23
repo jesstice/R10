@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 import Sessions from './Sessions';
 import {
   ActivityIndicator
 } from 'react-native';
+import { fetchSessionData } from '../../redux/modules/schedule';
 
 class SessionsContainer extends Component {
 
@@ -17,38 +18,34 @@ class SessionsContainer extends Component {
   }
 
   componentDidMount() {
-    let endpoint = "https://r10app-95fea.firebaseio.com/sessions.json";
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data });
-      })
-      .catch(error => console.log(`Error fetching JSON: ${error}`));
-  }
-
-  componentDidUpdate() {
-    if ( this.state.data && this.state.isLoading ) {
-      this.setState({ isLoading: false });
-    }
+    this.props.dispatch(fetchSessionData());
   }
 
   static propTypes = {
-
+    dispatch: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired
   }
   
   render() {
-    if (this.state.isLoading) {
+    if (this.props.loading) {
       return (
        <ActivityIndicator animating={true} size="small" color="black" />
       );
      } else {
       return (
         <Sessions 
-          sessionData={this.state.data}
+          sessionData={this.props.data}
         />
       );
      }
   }
 }
 
-export default SessionsContainer;
+function mapStateToProps(state) {
+  return {
+    data: state.session.scheduleData,
+    loading: state.session.loading,
+  }
+}
+
+export default connect(mapStateToProps)(SessionsContainer);

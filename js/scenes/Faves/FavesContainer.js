@@ -42,17 +42,19 @@ class FavesContainer extends Component {
   }
   
   render() {
-    if (this.state.isLoading) {
-      return (
-       <ActivityIndicator animating={true} size="small" color="black" />
-      );
-     } else {
-      return (
-        <Faves
-          // conduct={this.state.data}
-        />
-      );
-     }
+    return(
+      <Faves />
+    )
+
+    // if (this.state.isLoading) {
+    //   return (
+    //    <ActivityIndicator animating={true} size="small" color="black" />
+    //   );
+    //  } else {
+    //   return (
+    //     <Faves />
+    //   );
+    //  }
   }
 }
 

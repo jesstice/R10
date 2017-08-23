@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../config/styles';
+import { colors, typography } from '../../config/styles';
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,13 +12,18 @@ export const styles = StyleSheet.create({
   heading: {
     marginTop: 10,
     marginBottom: 10,
+    fontFamily: typography.fontMain,
     fontSize: 20,
     fontWeight: 'bold'
   },
   subheading: {
     marginTop: 10,
     marginBottom: 10,
-    color: colors.purple
+    color: colors.purple,
+    fontFamily: typography.fontMain
+  },
+  content: {
+    fontFamily: typography.fontMainLight
   },
   logo: {
     marginTop: 30,
