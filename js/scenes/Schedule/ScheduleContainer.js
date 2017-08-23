@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 import Schedule from './Schedule';
 import {
   ActivityIndicator
 } from 'react-native';
+import { fetchScheduleData } from '../../redux/modules/schedule';
 
 class ScheduleContainer extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      isLoading: true,
-    };
-  }
 
   static route = {
     navigationBar: {
@@ -23,38 +16,51 @@ class ScheduleContainer extends Component {
   }
 
   componentDidMount() {
-    let endpoint = "https://r10app-95fea.firebaseio.com/sessions.json";
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data });
-      })
-      .catch(error => console.log(`Error fetching JSON: ${error}`));
+    this.props.dispatch(fetchScheduleData());
   }
 
-  componentDidUpdate() {
-    if ( this.state.data && this.state.isLoading ) {
-      this.setState({ isLoading: false });
+  render() {
+    if (this.props.loading) {
+      return (
+        <ActivityIndicator animating={true} size="small" color="black" />
+      );
+    } else {
+      return (
+        <Schedule
+          scheduleData={this.props.data}
+        />
+      );
     }
   }
 
   static propTypes = {
-
+    dispatch: PropTypes.func.isRequired,
+    loading: PropTypes.bool.isRequired,
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        title: PropTypes.number.isRequired,
+        data: PropTypes.arrayOf(
+          PropTypes.shape({
+            location: PropTypes.string,
+            title: PropTypes.string,
+            start_time: PropTypes.number,
+            description: PropTypes.string,
+            session_id: PropTypes.string,
+            speaker: PropTypes.string
+          })
+        )}
+      )
+    )
   }
-  
-  render() {
-    if (this.state.isLoading) {
-      return (
-       <ActivityIndicator animating={true} size="small" color="black" />
-      );
-     } else {
-      return (
-        <Schedule 
-          scheduleData={this.state.data}
-        />
-      );
-     }
+
+}
+
+function mapStateToProps(state) {
+  return {
+    data: state.schedule.scheduleData,
+    loading: state.schedule.loading,
   }
 }
 
-export default ScheduleContainer;
+
+export default connect(mapStateToProps)(ScheduleContainer);
