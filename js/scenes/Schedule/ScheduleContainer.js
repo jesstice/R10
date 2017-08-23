@@ -6,6 +6,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { fetchScheduleData } from '../../redux/modules/schedule';
+import { goToSession } from '../../navigation/navigationHelpers';
 
 class ScheduleContainer extends Component {
 
@@ -19,6 +20,10 @@ class ScheduleContainer extends Component {
     this.props.dispatch(fetchScheduleData());
   }
 
+  popSession(item) {
+    goToSession("schedule", item);
+  }
+
   render() {
     if (this.props.loading) {
       return (
@@ -28,6 +33,7 @@ class ScheduleContainer extends Component {
       return (
         <Schedule
           scheduleData={this.props.data}
+          popSession={this.popSession}
         />
       );
     }

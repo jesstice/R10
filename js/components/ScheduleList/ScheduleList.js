@@ -3,28 +3,31 @@ import PropTypes from 'prop-types';
 import { 
   SectionList,
   View,
-  Text
+  Text,
+  TouchableOpacity
 } from 'react-native';
 import Moment from 'moment';
 import { styles } from './styles';
 
-const ScheduleList = ({ scheduleData }) => {
+const ScheduleList = ({ scheduleData, popSession }) => {
 
   return(
     <SectionList
       renderItem={({item}) => { 
         return (
-          <View>
-            <Text style={styles.heading}>{item.title}</Text>
-            <Text style={styles.location}>{item.location}</Text>
-          </View>
+          <TouchableOpacity onPress={() => popSession(item)}>
+            <View>
+              <Text style={styles.heading}>{item.title}</Text>
+              <Text style={styles.location}>{item.location}</Text>
+            </View>
+          </TouchableOpacity>
         )}
       }
       renderSectionHeader={(item) => {
         return <Text style={styles.sectionHeading}>{Moment.unix(item.section.title).format('h:mm A')}</Text>
       }}
       sections={scheduleData}
-      keyExtractor={item => item.title}
+      keyExtractor={item => item.session_id}
       ItemSeparatorComponent={() => <View style={styles.border} />}
     />
   )

@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import { 
   Text,
   View,
-  FlatList,
-  Image
+  Image,
+  Button
 } from 'react-native';
-
+import Moment from 'moment';
 import { styles } from './styles';
 
 const Sessions = ({ sessionData }) => {
@@ -15,13 +15,23 @@ const Sessions = ({ sessionData }) => {
       <View style={styles.contentContainer}>
         <Text style={styles.subheading}>{sessionData.location}</Text>
         <Text style={styles.heading}>{sessionData.title}</Text>
-        <Text>{sessionData.start_time}</Text>
+        <Text style={styles.time} >{Moment.unix(sessionData.start_time).format('h:mm A')}</Text>
+        <Text style={styles.description}>{sessionData.description}</Text>
       </View>
       <View style={styles.contentContainer}>
-        <Text>{sessionData.description}</Text>
         <Text>Presented By:</Text>
+        {/* <Image
+          style={styles.image}
+          source={{ uri: sessionData.image }}
+        /> */}
         <Text>{sessionData.speaker}</Text>
       </View>
+      <Button
+        // onPress={onPressLearnMore}
+        style={styles.button}
+        title="Remove from Faves"
+        accessibilityLabel="Remove session from faves"
+      />
     </View>
   );
 }

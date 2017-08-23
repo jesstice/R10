@@ -18,26 +18,31 @@ class SessionsContainer extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchSessionData());
+    // this.props.dispatch(fetchSessionData());
+  }
+
+  render() {
+    if (!this.props.sessionData) {
+      return (
+        <ActivityIndicator animating={true} size="small" color="black" />
+      );
+    } else {
+      return (
+        <Sessions 
+          sessionData={this.props.sessionData}
+        />
+      );
+    }
   }
 
   static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired
-  }
-  
-  render() {
-    if (this.props.loading) {
-      return (
-       <ActivityIndicator animating={true} size="small" color="black" />
-      );
-     } else {
-      return (
-        <Sessions 
-          sessionData={this.props.data}
-        />
-      );
-     }
+    sessionData: PropTypes.shape({
+      location: PropTypes.string,
+      title: PropTypes.string,
+      start_time: PropTypes.number,
+      description: PropTypes.string,
+      speaker: PropTypes.string
+    })
   }
 }
 

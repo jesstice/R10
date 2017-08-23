@@ -6,10 +6,10 @@ import {
 import ScheduleList from '../../components/ScheduleList/';
 import { styles } from './styles';
 
-const Schedule = ({ scheduleData }) => {
+const Schedule = ({ scheduleData, popSession }) => {
   return (
     <View>
-      <ScheduleList scheduleData={scheduleData} />
+      <ScheduleList scheduleData={scheduleData} popSession={popSession} />
     </View>
   );
 }
