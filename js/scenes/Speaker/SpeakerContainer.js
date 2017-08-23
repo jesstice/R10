@@ -18,20 +18,14 @@ class SpeakerContainer extends Component {
   }
 
   componentDidMount() {
-    let endpoint = "https://r10app-95fea.firebaseio.com/speakers.json";
-    fetch(endpoint)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ data });
-      })
-      .catch(error => console.log(`Error fetching JSON: ${error}`));
+    
   }
 
-  componentDidUpdate() {
-    if ( this.state.data && this.state.isLoading ) {
-      this.setState({ isLoading: false });
-    }
-  }
+  // componentDidUpdate() {
+  //   if ( this.state.data && this.state.isLoading ) {
+  //     this.setState({ isLoading: false });
+  //   }
+  // }
 
   handleLink(link) {
     Linking.canOpenURL(link).then(supported => {
@@ -42,25 +36,26 @@ class SpeakerContainer extends Component {
       }
     });
   }
-
-
-  static propTypes = {
-
-  }
   
   render() {
-    if (this.state.isLoading) {
+    if (!this.props.speakerData) {
       return (
        <ActivityIndicator animating={true} size="small" color="black" />
       );
      } else {
       return (
         <Speaker 
-          speakerData={this.state.data}
+          speakerData={this.props.speakerData}
           handleLink={this.handleLink}
         />
       );
      }
+  }
+
+  static propTypes = {
+    speakerData: PropTypes.shape({
+      // goes here
+    })
   }
 }
 

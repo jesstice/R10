@@ -10,7 +10,7 @@ import {
 import Moment from 'moment';
 import { styles } from './styles';
 
-const Session = ({ sessionData, speakerData, linkToWikipedia, popSpeaker }) => {
+const Session = ({ sessionData, speakerData, removeFave, popSpeaker }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -30,7 +30,7 @@ const Session = ({ sessionData, speakerData, linkToWikipedia, popSpeaker }) => {
         <Text>{speakerData.name}</Text>
       </View>
       <Button
-        onPress={() => linkToWikipedia(speakerData.url)}
+        onPress={() => removeFave()}
         style={styles.button}
         title="Remove from Faves"
         accessibilityLabel="Remove session from faves"
@@ -46,7 +46,17 @@ Session.propTypes = {
     start_time: PropTypes.number,
     description: PropTypes.string,
     speaker: PropTypes.string
-  })
+  }),
+  speakerData: PropTypes.shape({
+    bio: PropTypes.string,
+    name: PropTypes.string,
+    image: PropTypes.string,
+    speaker_id: PropTypes.string,
+    session: PropTypes.string,
+    url: PropTypes.string
+  }),
+  removeFave: PropTypes.func,
+  popSpeaker: PropTypes.func
 }
 
 export default Session;

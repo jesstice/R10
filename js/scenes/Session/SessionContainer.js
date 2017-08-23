@@ -19,7 +19,9 @@ class SessionContainer extends Component {
     goToSpeaker(speakerData);
   }
 
-  linkToWikipedia(url) {
+  removeFave() {
+    const { session_id } = this.props.sessionData;
+    
     // function goes here!
   }
 
@@ -33,7 +35,7 @@ class SessionContainer extends Component {
         <Session
           sessionData={this.props.sessionData}
           speakerData={this.props.data}
-          linkToWikipedia={this.linkToWikipedia}
+          removeFave={this.removeFave}
           popSpeaker={this.popSpeakerScene}
         />
       );
@@ -49,16 +51,14 @@ class SessionContainer extends Component {
       speaker: PropTypes.string
     }),
     loading: PropTypes.bool.isRequired,
-    // data: PropTypes.objectOf(
-    //   PropTypes.shape({
+    // data: PropTypes.shape({
     //     bio: PropTypes.string,
     //     name: PropTypes.string,
     //     image: PropTypes.string,
     //     speaker_id: PropTypes.string,
     //     session: PropTypes.string,
     //     url: PropTypes.string
-    //   })
-    // ),
+    // }),
     dispatch: PropTypes.func
   }
 }
