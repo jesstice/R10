@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 /*
 Global Styles
 */
@@ -12,6 +14,13 @@ export const colors = {
 
 export const typography = {
   baseSize: 16,
-  fontMain: 'Montserrat',
+  ...Platform.select({
+    ios: {
+      fontFamily: 'Montserrat'
+    },
+    android: {
+      fontFamily: 'Montserrat-Regular'
+    }
+  }),
   fontMainLight: 'Montserrat-Light'
 }
