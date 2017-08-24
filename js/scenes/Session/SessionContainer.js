@@ -5,13 +5,17 @@ import Session from './Session';
 import {
   ActivityIndicator
 } from 'react-native';
-import { fetchSpeakerData } from '../../redux/modules/session';
+import { fetchSpeakerData, updateFaveStatus } from '../../redux/modules/session';
 import { goToSpeaker } from '../../navigation/navigationHelpers';
 import { createFave, deleteFave } from '../../config/models';
 class SessionContainer extends Component {
 
   componentDidMount() {
-    const { speaker } = this.props.sessionData;
+    const { speaker, session_id } = this.props.sessionData;
+    const { faves } = this.props;
+    if (faves.find(faveId => faveId === session_id)) {
+      this.props.dispatch(updateFaveStatus(true))
+    }
     this.props.dispatch(fetchSpeakerData(speaker));
   }
 
@@ -19,13 +23,23 @@ class SessionContainer extends Component {
     goToSpeaker(speakerData);
   }
 
-  addToFave = (sessionId) => {
-    createFave(sessionId);
+  updateSessionFave = (sessionId) => {
+    if (this.props.isFaved) {
+      deleteFave(sessionId)
+      this.props.dispatch(updateFaveStatus(false))
+    } else {
+      createFave(sessionId);
+      this.props.dispatch(updateFaveStatus(true))
+    }
   }
 
-  removeFave = (sessionId) => {
-    deleteFave(sessionId)
-  }
+  // addToFave = (sessionId) => {
+  //   createFave(sessionId);
+  // }
+
+  // removeFave = (sessionId) => {
+  //   deleteFave(sessionId)
+  // }
 
   render() {
     if (this.props.loading) {
@@ -37,9 +51,9 @@ class SessionContainer extends Component {
         <Session
           sessionData={this.props.sessionData}
           speakerData={this.props.data}
-          removeFave={this.removeFave}
           pushSpeaker={this.pushSpeakerScene}
-          createFave={this.addToFave}
+          isFaved={this.props.isFaved}
+          updateSessionFave={this.updateSessionFave}
         />
       );
     }
@@ -70,6 +84,8 @@ function mapStateToProps(state) {
   return {
     data: state.session.speakerData,
     loading: state.session.loading,
+    faves: state.schedule.faves,
+    isFaved: state.session.faveStatus
   }
 }
 

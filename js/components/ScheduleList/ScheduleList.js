@@ -1,23 +1,35 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { 
+  Platform,
   SectionList,
   View,
   Text,
   TouchableOpacity
 } from 'react-native';
 import Moment from 'moment';
+import Icon from 'react-native-vector-icons/Ionicons';
+
 import { styles } from './styles';
 
-const ScheduleList = ({ scheduleData, pushSession }) => {
+const ScheduleList = ({ scheduleData, pushSession, faveSessions }) => {
   return(
     <SectionList
-      renderItem={({item}) => { 
+      renderItem={({item}) => {
         return (
           <TouchableOpacity onPress={() => pushSession(item)}>
-            <View>
+            <View style={styles.itemContainer}>
               <Text style={styles.heading}>{item.title}</Text>
               <Text style={styles.location}>{item.location}</Text>
+              {faveSessions.find(faveId => faveId === item.session_id) ?
+                <Icon
+                  name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
+                  color="red"
+                  backgroundColor="transparent"
+                  size={14}
+                />
+                : null
+              }
             </View>
           </TouchableOpacity>
         )}

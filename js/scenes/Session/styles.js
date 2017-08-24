@@ -4,7 +4,15 @@ import { colors, typography } from '../../config/styles';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 5
+  },
+  locationContainer: {
+    width: '100%',
+    padding: 10,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
   contentContainer: {
    padding: 10
@@ -18,7 +26,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   heading: {
-    marginTop: 10,
     marginBottom: 10,
     fontSize: 25,
     fontFamily: typography.fontMain,
@@ -26,7 +33,6 @@ export const styles = StyleSheet.create({
   },
   subheading: {
     marginTop: 10,
-    marginBottom: 5,
     color: colors.mediumGrey,
     fontFamily: typography.fontMain,
   },

@@ -13,17 +13,22 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import { styles } from './styles';
 
-const Session = ({ sessionData, speakerData, removeFave, pushSpeaker, createFave }) => {
+const Session = ({ sessionData, speakerData, pushSpeaker, isFaved, updateSessionFave }) => {
   return (
     <View style={styles.container}>
-      <Icon.Button
-        name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
-        color="red"
-        backgroundColor="transparent"
-        size={40}
-      />
-      <View style={styles.contentContainer}>
+      <View style={styles.locationContainer}>
         <Text style={styles.subheading}>{sessionData.location}</Text>
+        {isFaved ?
+          <Icon
+            name={Platform.OS === "ios" ? "ios-heart" : "md-heart"}
+            color="red"
+            backgroundColor="transparent"
+            size={20}
+          />
+        : null
+        }
+      </View>
+      <View style={styles.contentContainer}>
         <Text style={styles.heading}>{sessionData.title}</Text>
         <Text style={styles.time} >{Moment.unix(sessionData.start_time).format('h:mm A')}</Text>
         <Text style={styles.description}>{sessionData.description}</Text>
@@ -41,9 +46,9 @@ const Session = ({ sessionData, speakerData, removeFave, pushSpeaker, createFave
         </View>
       : null
       }
-      <TouchableOpacity onPress={() => createFave(sessionData.session_id)}>
+      <TouchableOpacity onPress={() => updateSessionFave(sessionData.session_id)}>
         <FaveButton
-          buttonText="Add to Faves"
+          buttonText={isFaved ? "Remove from Faves" : "Add to Faves" }
         />
       </TouchableOpacity>
     </View>

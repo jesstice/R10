@@ -1,6 +1,7 @@
 import { formatDataObject } from '../../lib/dataFormatHelpers';
 
 export const LOAD_SPEAKER_DATA = 'LOAD_SPEAKER_DATA';
+export const UPDATE_FAVE_STATUS = 'UPDATE_FAVE_STATUS';
 
 export function loadSpeakerData(speakerData) {
   return {
@@ -23,9 +24,17 @@ export function fetchSpeakerData(speakerID) {
   }
 }
 
+export function updateFaveStatus(bool) {
+  return {
+    type: UPDATE_FAVE_STATUS,
+    payload: bool
+  }
+}
+
 const initialState = {
   loading: true,
-  speakerData: []
+  speakerData: [],
+  faveStatus: false
 }
 
 export function sessionReducer(state = initialState, action) {
@@ -37,6 +46,12 @@ export function sessionReducer(state = initialState, action) {
         speakerData: action.payload
       }
       return loadState;
+    case UPDATE_FAVE_STATUS:
+      const faveState = {
+        ...state,
+        faveStatus: action.payload
+      }
+      return faveState;
     default:
       return state;
   }

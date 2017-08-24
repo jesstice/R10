@@ -5,7 +5,8 @@ import Schedule from './Schedule';
 import {
   ActivityIndicator
 } from 'react-native';
-import { fetchScheduleData } from '../../redux/modules/schedule';
+import realm from '../../config/models';
+import { fetchScheduleData, getFaveSessions } from '../../redux/modules/schedule';
 import { goToSession } from '../../navigation/navigationHelpers';
 
 class ScheduleContainer extends Component {
@@ -18,6 +19,8 @@ class ScheduleContainer extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchScheduleData());
+    this.props.dispatch(getFaveSessions());
+    realm.addListener('change', () => this.props.dispatch(getFaveSessions()));
   }
 
   pushSessionScene(item) {
@@ -34,6 +37,7 @@ class ScheduleContainer extends Component {
         <Schedule
           scheduleData={this.props.data}
           pushSession={this.pushSessionScene}
+          faveSessions={this.props.faves}
         />
       );
     }
@@ -65,6 +69,7 @@ function mapStateToProps(state) {
   return {
     data: state.schedule.scheduleData,
     loading: state.schedule.loading,
+    faves: state.schedule.faves
   }
 }
 

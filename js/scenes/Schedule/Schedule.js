@@ -6,10 +6,14 @@ import {
 import ScheduleList from '../../components/ScheduleList/';
 import { styles } from './styles';
 
-const Schedule = ({ scheduleData, pushSession }) => {
+const Schedule = ({ scheduleData, pushSession, faveSessions }) => {
   return (
     <View>
-      <ScheduleList scheduleData={scheduleData} pushSession={pushSession} />
+      <ScheduleList
+        scheduleData={scheduleData}
+        pushSession={pushSession}
+        faveSessions={faveSessions}
+      />
     </View>
   );
 }

@@ -1,6 +1,8 @@
 import { formatSessionData } from '../../lib/dataFormatHelpers';
+import { queryFaves } from '../../config/models';
 
 export const LOAD_SCHEDULE_DATA = 'LOAD_SCHEDULE_DATA';
+export const GET_FAVE_SESSIONS = 'GET_FAVE_SESSIONS';
 
 export function loadScheduleData(scheduleData) {
   return {
@@ -21,9 +23,18 @@ export function fetchScheduleData() {
   }
 }
 
+export function getFaveSessions() {
+  const faves = queryFaves().map(fave => fave.id);
+  return {
+    type: GET_FAVE_SESSIONS,
+    payload: faves
+  }
+}
+
 const initialState = {
   loading: true,
-  scheduleData: []
+  scheduleData: [],
+  faves: []
 }
 
 export function scheduleReducer(state = initialState, action) {
@@ -35,6 +46,12 @@ export function scheduleReducer(state = initialState, action) {
         scheduleData: action.payload
       }
       return loadState;
+    case GET_FAVE_SESSIONS:
+      const faveState = {
+        ...state,
+        faves: action.payload
+      }
+      return faveState;
     default:
       return state;
   }

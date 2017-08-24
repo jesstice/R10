@@ -2,13 +2,10 @@ import { StyleSheet } from 'react-native';
 import { colors, typography } from '../../config/styles';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center'
-  },
-  contentContainer: {
-   padding: 10
-  },
+  // container: {
+  //   flex: 1,
+  //   alignItems: 'center'
+  // },
   sectionHeading: {
     paddingTop: 5,
     paddingLeft: 10,
@@ -18,17 +15,24 @@ export const styles = StyleSheet.create({
     fontFamily: typography.fontMain,
     fontWeight: 'bold'
   },
+  itemContainer: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
   heading: {
     marginTop: 10,
     marginBottom: 5,
-    paddingLeft: 10,
+    flexBasis: '100%',
     fontFamily: typography.fontMain,
     fontSize: 14,
     fontWeight: 'bold'
   },
   location: {
     marginBottom: 10,
-    paddingLeft: 10,
     color: colors.mediumGrey,
     fontFamily: typography.fontMain,
     fontSize: 12,
