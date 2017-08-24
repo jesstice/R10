@@ -7,16 +7,19 @@ import {
 import { Text } from 'react-native';
 import { Router } from './routes';
 import Icon from 'react-native-vector-icons/Ionicons';
+import BackgroundGradient from '../components/BackgroundGradient/';
 import { colors, typography } from '../config/styles';
 
 const defaultRouteConfig = {
   navigationBar: {
-      tintColor: 'blue'
+    tintColor: 'white',
+    titleStyle: {
+      fontFamily: typography.fontMain
+    },
+    renderBackground: () => (
+      <BackgroundGradient colors={[colors.red, colors.purple]} />
+    )
   },
-  // renderBackground: () => (
-    // react native linear gradient
-    // returning some component for the background...
-  // );
 }
 
 class NavigationLayout extends Component {
