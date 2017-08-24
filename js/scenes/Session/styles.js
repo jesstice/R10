@@ -9,6 +9,14 @@ export const styles = StyleSheet.create({
   contentContainer: {
    padding: 10
   },
+  speakerInfo: {
+    width: '100%',
+    paddingLeft: 10,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    flexDirection: 'row'
+  },
   heading: {
     marginTop: 10,
     marginBottom: 10,
@@ -23,6 +31,7 @@ export const styles = StyleSheet.create({
     fontFamily: typography.fontMain,
   },
   description: {
+    marginBottom: 10,
     fontFamily: typography.fontMainLight,
     fontSize: 18,
     lineHeight: 22
@@ -34,8 +43,15 @@ export const styles = StyleSheet.create({
     fontFamily: typography.fontMain,
   },
   image: {
+    marginRight: 10,
     height: 50,
-    width: 50
+    width: 50,
+    borderRadius: 25
+  },
+  speakerName: {
+    fontFamily: typography.fontMain,
+    fontSize: 16,
+    fontWeight: 'bold',
   },
   border: {
     width: '90%',
@@ -44,7 +60,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: colors.purple,
-    borderRadius: 6,
+    borderRadius: 10,
     color: 'white'
   }
 });

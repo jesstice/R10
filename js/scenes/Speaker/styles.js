@@ -1,10 +1,35 @@
 import { StyleSheet } from 'react-native';
-import { colors } from '../../config/styles';
+import { colors, typography } from '../../config/styles';
 
 export const styles = StyleSheet.create({
+  speakerContainer: {
+    padding: 20,
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'black'
+  },
+  icon: {
+    backgroundColor: 'transparent'
+  },
+  title: {
+    color: 'white',
+    fontFamily: typography.fontMain,
+    fontSize: 16,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
   container: {
+    marginTop: 20,
+    padding: 5,
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 20
+  },
+  image: {
+    height: 75,
+    width: 75,
+    borderRadius: 75/2
   },
   contentContainer: {
    padding: 10
@@ -13,20 +38,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 10,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   },
-  subheading: {
-    marginTop: 10,
-    marginBottom: 10,
-    color: colors.purple
-  },
-  logo: {
-    marginTop: 30,
-    marginBottom: 20,
-  },
-  border: {
-    width: '90%',
-    height: StyleSheet.hairlineWidth,
-    backgroundColor: colors.lightGrey
-  }
 });

@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { fetchSpeakerData } from '../../redux/modules/session';
 import { goToSpeaker } from '../../navigation/navigationHelpers';
-
+import { createFave, deleteFave } from '../../config/models';
 class SessionContainer extends Component {
 
   componentDidMount() {
@@ -15,14 +15,16 @@ class SessionContainer extends Component {
     this.props.dispatch(fetchSpeakerData(speaker));
   }
 
-  popSpeakerScene(speakerData) {
+  pushSpeakerScene = (speakerData) => {
     goToSpeaker(speakerData);
   }
 
-  removeFave() {
-    const { session_id } = this.props.sessionData;
-    
-    // function goes here!
+  addToFave = (sessionId) => {
+    createFave(sessionId);
+  }
+
+  removeFave = (sessionId) => {
+    deleteFave(sessionId)
   }
 
   render() {
@@ -36,7 +38,8 @@ class SessionContainer extends Component {
           sessionData={this.props.sessionData}
           speakerData={this.props.data}
           removeFave={this.removeFave}
-          popSpeaker={this.popSpeakerScene}
+          pushSpeaker={this.pushSpeakerScene}
+          createFave={this.addToFave}
         />
       );
     }

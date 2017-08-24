@@ -6,10 +6,10 @@ import {
 import ScheduleList from '../../components/ScheduleList/';
 import { styles } from './styles';
 
-const Schedule = ({ scheduleData, popSession }) => {
+const Schedule = ({ scheduleData, pushSession }) => {
   return (
     <View>
-      <ScheduleList scheduleData={scheduleData} popSession={popSession} />
+      <ScheduleList scheduleData={scheduleData} pushSession={pushSession} />
     </View>
   );
 }
@@ -35,7 +35,8 @@ Schedule.propTypes = {
     location: PropTypes.string,
     title: PropTypes.string,
     start_time: PropTypes.number,
-  })
+  }),
+  pushSession: PropTypes.func
 }
 
 export default Schedule;

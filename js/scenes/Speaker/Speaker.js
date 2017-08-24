@@ -4,27 +4,39 @@ import {
   Text,
   View,
   Image,
-  Button
+  Button,
+  TouchableOpacity
 } from 'react-native';
+import SpeakerButton from '../../components/Button/';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import { styles } from './styles';
 
-const Speaker = ({ speakerData, handleLink }) => {
+const Speaker = ({ speakerData, handleLink, popSpeakerScene }) => {
   return (
-    <View style={styles.container}>
-      <Image
-        style={styles.logo}
-        source={{uri: speakerData.image}}
-      />
-      <View style={styles.contentContainer}>
-        <Text style={styles.heading}>{speakerData.name}</Text>
-        <Text>{speakerData.bio}</Text>
+    <View style={styles.speakerContainer}>
+      <Icon.Button 
+        name="ios-close"
+        style={styles.icon}
+        backgroundColor="transparent"
+        size={40}
+        onPress={() => popSpeakerScene()} />
+      <Text style={styles.title}>About the Speaker</Text>
+      <View style={styles.container}>
+        <Image
+          style={styles.image}
+          source={{uri: speakerData.image}}
+        />
+        <View style={styles.contentContainer}>
+          <Text style={styles.heading}>{speakerData.name}</Text>
+          <Text>{speakerData.bio}</Text>
+        </View>
+        <TouchableOpacity onPress={() => handleLink(speakerData.url)}>
+          <SpeakerButton
+            buttonText="Reach More on Wikipedia"
+          />
+        </TouchableOpacity>
       </View>
-      <Button
-        onPress={() => handleLink(speakerData.url)}
-        title="Reach More on Wikipedia"
-        accessibilityLabel="Learn more on Wikipedia"
-      />
     </View>
   );
 }
@@ -36,7 +48,8 @@ Speaker.propTypes = {
     bio: PropTypes.string,
     url: PropTypes.url
   }),
-  handleLink: PropTypes.func.isRequired
+  handleLink: PropTypes.func.isRequired,
+  popSpeakerScene: PropTypes.func
 }
 
 export default Speaker;

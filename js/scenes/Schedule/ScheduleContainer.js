@@ -20,7 +20,7 @@ class ScheduleContainer extends Component {
     this.props.dispatch(fetchScheduleData());
   }
 
-  popSessionScene(item) {
+  pushSessionScene(item) {
     goToSession("schedule", item);
   }
 
@@ -33,7 +33,7 @@ class ScheduleContainer extends Component {
       return (
         <Schedule
           scheduleData={this.props.data}
-          popSession={this.popSessionScene}
+          pushSession={this.pushSessionScene}
         />
       );
     }

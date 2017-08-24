@@ -1,31 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
 import Speaker from './Speaker';
 import {
   ActivityIndicator,
   Linking
 } from 'react-native';
+import { popSpeaker } from '../../navigation/navigationHelpers';
 
 class SpeakerContainer extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      data: [],
-      isLoading: true,
-    };
+  popSpeakerScene() {
+    popSpeaker()
   }
-
-  componentDidMount() {
-    
-  }
-
-  // componentDidUpdate() {
-  //   if ( this.state.data && this.state.isLoading ) {
-  //     this.setState({ isLoading: false });
-  //   }
-  // }
 
   handleLink(link) {
     Linking.canOpenURL(link).then(supported => {
@@ -47,6 +33,7 @@ class SpeakerContainer extends Component {
         <Speaker 
           speakerData={this.props.speakerData}
           handleLink={this.handleLink}
+          popSpeakerScene={this.popSpeakerScene}
         />
       );
      }

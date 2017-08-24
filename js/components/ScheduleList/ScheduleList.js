@@ -9,13 +9,12 @@ import {
 import Moment from 'moment';
 import { styles } from './styles';
 
-const ScheduleList = ({ scheduleData, popSession }) => {
-
+const ScheduleList = ({ scheduleData, pushSession }) => {
   return(
     <SectionList
       renderItem={({item}) => { 
         return (
-          <TouchableOpacity onPress={() => popSession(item)}>
+          <TouchableOpacity onPress={() => pushSession(item)}>
             <View>
               <Text style={styles.heading}>{item.title}</Text>
               <Text style={styles.location}>{item.location}</Text>
@@ -49,7 +48,8 @@ SectionList.propTypes = {
         })
       )}
     )
-  )
+  ),
+  pushSession: PropTypes.func
 }
 
 export default ScheduleList;

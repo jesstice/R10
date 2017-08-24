@@ -4,13 +4,13 @@ import {
   Text,
   View,
   Image,
-  Button,
   TouchableOpacity
 } from 'react-native';
+import Button from '../../components/Button/';
 import Moment from 'moment';
 import { styles } from './styles';
 
-const Session = ({ sessionData, speakerData, removeFave, popSpeaker }) => {
+const Session = ({ sessionData, speakerData, removeFave, pushSpeaker, createFave }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contentContainer}>
@@ -18,23 +18,22 @@ const Session = ({ sessionData, speakerData, removeFave, popSpeaker }) => {
         <Text style={styles.heading}>{sessionData.title}</Text>
         <Text style={styles.time} >{Moment.unix(sessionData.start_time).format('h:mm A')}</Text>
         <Text style={styles.description}>{sessionData.description}</Text>
+        <Text style={styles.subheading}>Presented By:</Text>
       </View>
-      <View style={styles.contentContainer}>
-        <Text>Presented By:</Text>
-        <TouchableOpacity onPress={() => popSpeaker(speakerData)}>
+      <View style={styles.speakerInfo}>
+        <TouchableOpacity onPress={() => pushSpeaker(speakerData)}>
           <Image
             style={styles.image}
             source={{ uri: speakerData.image }}
           />
         </TouchableOpacity>
-        <Text>{speakerData.name}</Text>
+        <Text style={styles.speakerName}>{speakerData.name}</Text>
       </View>
-      <Button
-        onPress={() => removeFave()}
-        style={styles.button}
-        title="Remove from Faves"
-        accessibilityLabel="Remove session from faves"
-      />
+      <TouchableOpacity onPress={() => createFave(sessionData.session_id)}>
+        <Button
+          buttonText="Add to Faves"
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -56,7 +55,7 @@ Session.propTypes = {
     url: PropTypes.string
   }),
   removeFave: PropTypes.func,
-  popSpeaker: PropTypes.func
+  pushSpeaker: PropTypes.func
 }
 
 export default Session;
