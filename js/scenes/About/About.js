@@ -20,16 +20,17 @@ const About = ({ conduct }) => {
         />
         <View style={styles.border} />
         <View style={styles.contentContainer}>
+          <Text style={styles.content}>R10 is a conference that focuses on just about any topic related to dev.</Text>
           <Text style={styles.heading}>Date & Venue</Text>
           <Text style={styles.content}>The R10 Conference will take place on June 27, 2017 in Vancouver, BC.</Text>
-        </View>
-        <View style={styles.contentContainer}>
           <Text style={styles.heading}>Code of Conduct</Text>
-          {
-            conduct.map((item) => {
-              return <ConductItem itemData={item} key={item.title} />
-            })
-          }
+          <View style={styles.conductContainer}>
+            {
+              conduct.map((item) => {
+                return <ConductItem itemData={item} key={item.title} />
+              })
+            }
+          </View>
         </View>
       </View>
     </ScrollView>

@@ -19,16 +19,6 @@ class AboutContainer extends Component {
     this.props.dispatch(fetchConductData());
   }
 
-  static propTypes = {
-    loading: PropTypes.bool.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    // conduct: PropTypes.arrayOf({
-    //   PropTypes.shape({
-    //     title: PropTypes.string,
-    //   })
-    // })
-  }
-  
   render() {
     if (this.props.loading) {
       return (
@@ -49,6 +39,17 @@ function mapStateToProps(state) {
     data: state.conduct.conductData,
     loading: state.conduct.loading,
   }
+}
+
+AboutContainer.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string
+    })
+  )
 }
 
 export default connect(mapStateToProps)(AboutContainer);

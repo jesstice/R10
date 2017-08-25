@@ -3,27 +3,9 @@ import { colors, typography } from '../../config/styles';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    padding: 10,
+    flex: 0,
     alignItems: 'center'
-  },
-  contentContainer: {
-   padding: 10
-  },
-  heading: {
-    marginTop: 10,
-    marginBottom: 10,
-    fontFamily: typography.fontMain,
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  subheading: {
-    marginTop: 10,
-    marginBottom: 10,
-    color: colors.purple,
-    fontFamily: typography.fontMain
-  },
-  content: {
-    fontFamily: typography.fontMainLight
   },
   logo: {
     marginTop: 30,
@@ -33,5 +15,25 @@ export const styles = StyleSheet.create({
     width: '90%',
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.lightGrey
+  },
+  contentContainer: {
+   paddingTop: 10,
+   flex: 0
+  },
+  heading: {
+    marginTop: 10,
+    marginBottom: 10,
+    color: colors.mediumGrey,
+    fontFamily: typography.fontMain,
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  content: {
+    color: colors.mediumGrey,
+    fontFamily: typography.fontMainLight,
+    fontSize: 12
+  },
+  conductContainer: {
+    paddingRight: 5
   }
 });
