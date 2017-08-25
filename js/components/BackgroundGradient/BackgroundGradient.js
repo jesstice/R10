@@ -10,7 +10,6 @@ const BackgroundGradient = ({ colors }) => {
       style={styles.gradient} 
       end={{x: 1.0, y: 0.1}}
       start={{x: 0.1, y: 1.0}}
-      // locations={[0, 0.5]}
     />
   );
 }
