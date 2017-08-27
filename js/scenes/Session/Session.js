@@ -4,6 +4,7 @@ import {
   Platform,
   Text,
   View,
+  ScrollView,
   Image,
   TouchableOpacity
 } from 'react-native';
@@ -15,7 +16,7 @@ import { styles } from './styles';
 
 const Session = ({ sessionData, speakerData, pushSpeaker, isFaved, updateSessionFave }) => {
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.locationContainer}>
         <Text style={styles.subheading}>{sessionData.location}</Text>
         {isFaved ?
@@ -46,12 +47,13 @@ const Session = ({ sessionData, speakerData, pushSpeaker, isFaved, updateSession
         </View>
       : null
       }
+      <View style={styles.border} />
       <TouchableOpacity onPress={() => updateSessionFave(sessionData.session_id)}>
         <FaveButton
           buttonText={isFaved ? "Remove from Faves" : "Add to Faves" }
         />
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -72,7 +74,9 @@ Session.propTypes = {
     url: PropTypes.string
   }),
   removeFave: PropTypes.func,
-  pushSpeaker: PropTypes.func
+  pushSpeaker: PropTypes.func,
+  isFaved: PropTypes.bool.isRequired,
+  updateSessionFave: PropTypes.func
 }
 
 export default Session;

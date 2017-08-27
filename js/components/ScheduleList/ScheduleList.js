@@ -61,7 +61,10 @@ SectionList.propTypes = {
       )}
     )
   ),
-  pushSession: PropTypes.func
+  pushSession: PropTypes.func,
+  faveSessions: PropTypes.arrayOf(
+    PropTypes.string
+  )
 }
 
 export default ScheduleList;

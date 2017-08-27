@@ -32,6 +32,8 @@ const About = ({ conduct }) => {
             }
           </View>
         </View>
+        <View style={styles.border} />
+        <Text style={styles.copyright}>&#9400; RED Academy 2017</Text>
       </View>
     </ScrollView>
   );

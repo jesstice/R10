@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { connect } from 'react-redux';
 import Faves from './Faves';
 import {
   ActivityIndicator
 } from 'react-native';
+import realm from '../../config/models';
+import { fetchFaveData } from '../../redux/modules/faves';
+import { goToSession } from '../../navigation/navigationHelpers';
 
 class FavesContainer extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      isLoading: true,
-    };
-  }
 
   static route = {
     navigationBar: {
@@ -21,41 +17,45 @@ class FavesContainer extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   let endpoint = "https://r10app-95fea.firebaseio.com/code_of_conduct.json";
-  //   fetch(endpoint)
-  //     .then(response => response.json())
-  //     .then(data => {
-  //       this.setState({ data });
-  //     })
-  //     .catch(error => console.log(`Error fetching JSON: ${error}`));
-  // }
-
-  // componentDidUpdate() {
-  //   if ( this.state.data && this.state.isLoading ) {
-  //     this.setState({ isLoading: false });
-  //   }
-  // }
-
-  static propTypes = {
-
+  componentDidMount() {
+    this.props.dispatch(fetchFaveData())
+    realm.addListener('change', () => this.props.dispatch(fetchFaveData()))
   }
-  
-  render() {
-    return(
-      <Faves />
-    )
 
-    // if (this.state.isLoading) {
-    //   return (
-    //    <ActivityIndicator animating={true} size="small" color="black" />
-    //   );
-    //  } else {
-    //   return (
-    //     <Faves />
-    //   );
-    //  }
+  pushSessionScene(item) {
+    goToSession("faves", item);
+  }
+
+  render() {
+    if (this.props.loading) {
+      return (
+        <ActivityIndicator animating={true} size="small" color="black" />
+      );
+    } else {
+      return(
+        <Faves 
+          favesData={this.props.data}
+          pushSession={this.pushSessionScene}
+          faves={this.props.faves}
+        />
+      )
+    }
   }
 }
 
-export default FavesContainer;
+function mapStateToProps(state) {
+  return {
+    loading: state.faves.loading,
+    data: state.faves.favesData,
+    faves: state.schedule.faves
+  }
+}
+
+FavesContainer.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  dispatch: PropTypes.func,
+
+}
+
+
+export default connect(mapStateToProps)(FavesContainer);

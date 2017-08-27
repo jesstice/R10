@@ -3,31 +3,32 @@ import { colors, typography } from '../../config/styles';
 
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 0,
     alignItems: 'center',
     padding: 5
   },
   locationContainer: {
     width: '100%',
     padding: 10,
-    flex: 1,
+    flex: 0,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
   contentContainer: {
-   padding: 10
+    width: '100%',
+    padding: 10
   },
   speakerInfo: {
     width: '100%',
     paddingLeft: 10,
-    flex: 1,
+    flex: 0,
     alignItems: 'center',
     justifyContent: 'flex-start',
     flexDirection: 'row'
   },
   heading: {
     marginBottom: 10,
-    fontSize: 25,
+    fontSize: 24,
     fontFamily: typography.fontMain,
     fontWeight: 'bold'
   },
@@ -60,13 +61,10 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   border: {
+    marginTop: 15,
+    marginBottom: 15,
     width: '90%',
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.lightGrey
-  },
-  button: {
-    backgroundColor: colors.purple,
-    borderRadius: 10,
-    color: 'white'
   }
 });

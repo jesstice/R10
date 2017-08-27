@@ -1,20 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { 
-  View,
+  ScrollView,
 } from 'react-native';
 import ScheduleList from '../../components/ScheduleList/';
-import { styles } from './styles';
 
 const Schedule = ({ scheduleData, pushSession, faveSessions }) => {
   return (
-    <View>
+    <ScrollView>
       <ScheduleList
         scheduleData={scheduleData}
         pushSession={pushSession}
         faveSessions={faveSessions}
       />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -40,7 +39,10 @@ Schedule.propTypes = {
     title: PropTypes.string,
     start_time: PropTypes.number,
   }),
-  pushSession: PropTypes.func
+  pushSession: PropTypes.func,
+  faveSessions: PropTypes.arrayOf(
+    PropTypes.string
+  )
 }
 
 export default Schedule;

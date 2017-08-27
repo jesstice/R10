@@ -14,13 +14,13 @@ export const colors = {
 
 export const typography = {
   baseSize: 16,
+  fontMainLight: "Montserrat-Light",
   ...Platform.select({
     ios: {
-      fontFamily: 'Montserrat'
+      fontMain: 'Montserrat'
     },
     android: {
-      fontFamily: 'Montserrat-Regular'
+      fontMain: 'Montserrat-Regular'
     }
   }),
-  fontMainLight: 'Montserrat-Light'
 }

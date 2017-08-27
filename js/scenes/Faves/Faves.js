@@ -1,24 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { 
-  Text,
   View,
-  FlatList,
-  Image
 } from 'react-native';
+import ScheduleList from '../../components/ScheduleList/';
 
 import { styles } from './styles';
 
-const Faves = () => {
+const Faves = ({ favesData, pushSession, faves }) => {
   return (
-    <View style={styles.container}>
-      <Text>Faves go here!</Text>
+    <View>
+      <ScheduleList
+        scheduleData={favesData}
+        pushSession={pushSession}
+        faveSessions={faves}
+      />
     </View>
   );
 }
 
 Faves.propTypes = {
-
+  pushSession: PropTypes.func,
+  favesData: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          location: PropTypes.string,
+          title: PropTypes.string,
+          start_time: PropTypes.number,
+          description: PropTypes.string,
+          speaker: PropTypes.string
+        })
+      ),
+      title: PropTypes.number
+    })
+  ),
+  faves: PropTypes.arrayOf(
+    PropTypes.string
+  )
 }
 
 export default Faves;

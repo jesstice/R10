@@ -33,7 +33,7 @@ export function updateFaveStatus(bool) {
 
 const initialState = {
   loading: true,
-  speakerData: [],
+  speakerData: {},
   faveStatus: false
 }
 

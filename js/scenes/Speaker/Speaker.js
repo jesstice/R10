@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { 
   Text,
   View,
+  ScrollView,
   Image,
-  Button,
   TouchableOpacity
 } from 'react-native';
 import SpeakerButton from '../../components/Button/';
@@ -14,14 +14,16 @@ import { styles } from './styles';
 
 const Speaker = ({ speakerData, handleLink, popSpeakerScene }) => {
   return (
-    <View style={styles.speakerContainer}>
-      <Icon.Button 
-        name="ios-close"
-        style={styles.icon}
-        backgroundColor="transparent"
-        size={40}
-        onPress={() => popSpeakerScene()} />
-      <Text style={styles.title}>About the Speaker</Text>
+    <ScrollView contentContainerStyle={styles.speakerContainer}>
+      <View style={styles.titleContainer}>
+        <Icon.Button 
+          name="ios-close"
+          style={styles.icon}
+          backgroundColor="transparent"
+          size={40}
+          onPress={() => popSpeakerScene()} />
+        <Text style={styles.title}>About the Speaker</Text>
+      </View>
       <View style={styles.container}>
         <Image
           style={styles.image}
@@ -29,15 +31,15 @@ const Speaker = ({ speakerData, handleLink, popSpeakerScene }) => {
         />
         <View style={styles.contentContainer}>
           <Text style={styles.heading}>{speakerData.name}</Text>
-          <Text>{speakerData.bio}</Text>
+          <Text style={styles.content}>{speakerData.bio}</Text>
         </View>
         <TouchableOpacity onPress={() => handleLink(speakerData.url)}>
           <SpeakerButton
-            buttonText="Reach More on Wikipedia"
+            buttonText="Read More on Wikipedia"
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

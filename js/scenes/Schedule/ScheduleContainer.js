@@ -42,27 +42,6 @@ class ScheduleContainer extends Component {
       );
     }
   }
-
-  static propTypes = {
-    dispatch: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
-    data: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.number.isRequired,
-        data: PropTypes.arrayOf(
-          PropTypes.shape({
-            location: PropTypes.string,
-            title: PropTypes.string,
-            start_time: PropTypes.number,
-            description: PropTypes.string,
-            session_id: PropTypes.string,
-            speaker: PropTypes.string
-          })
-        )}
-      )
-    )
-  }
-
 }
 
 function mapStateToProps(state) {
@@ -73,5 +52,24 @@ function mapStateToProps(state) {
   }
 }
 
+ScheduleContainer.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.number.isRequired,
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          location: PropTypes.string,
+          title: PropTypes.string,
+          start_time: PropTypes.number,
+          description: PropTypes.string,
+          session_id: PropTypes.string,
+          speaker: PropTypes.string
+        })
+      )}
+    )
+  )
+}
 
 export default connect(mapStateToProps)(ScheduleContainer);

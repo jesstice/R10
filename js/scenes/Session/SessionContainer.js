@@ -10,6 +10,12 @@ import { goToSpeaker } from '../../navigation/navigationHelpers';
 import { createFave, deleteFave } from '../../config/models';
 class SessionContainer extends Component {
 
+  static route = {
+    navigationBar: {
+      title: 'Session',
+    }
+  }
+
   componentDidMount() {
     const { speaker, session_id } = this.props.sessionData;
     const { faves } = this.props;
@@ -32,14 +38,6 @@ class SessionContainer extends Component {
       this.props.dispatch(updateFaveStatus(true))
     }
   }
-
-  // addToFave = (sessionId) => {
-  //   createFave(sessionId);
-  // }
-
-  // removeFave = (sessionId) => {
-  //   deleteFave(sessionId)
-  // }
 
   render() {
     if (this.props.loading) {
@@ -65,18 +63,23 @@ class SessionContainer extends Component {
       title: PropTypes.string,
       start_time: PropTypes.number,
       description: PropTypes.string,
-      speaker: PropTypes.string
+      speaker: PropTypes.string,
+      session_id: PropTypes.string,
     }),
     loading: PropTypes.bool.isRequired,
-    // data: PropTypes.shape({
-    //     bio: PropTypes.string,
-    //     name: PropTypes.string,
-    //     image: PropTypes.string,
-    //     speaker_id: PropTypes.string,
-    //     session: PropTypes.string,
-    //     url: PropTypes.string
-    // }),
-    dispatch: PropTypes.func
+    data: PropTypes.shape({
+        bio: PropTypes.string,
+        name: PropTypes.string,
+        image: PropTypes.string,
+        speaker_id: PropTypes.string,
+        session: PropTypes.string,
+        url: PropTypes.string
+    }),
+    dispatch: PropTypes.func,
+    isFaved: PropTypes.bool.isRequired,
+    faves: PropTypes.arrayOf(
+      PropTypes.string
+    )
   }
 }
 

@@ -12,7 +12,9 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
   border: {
-    width: '90%',
+    marginTop: 10,
+    marginBottom: 10,
+    width: '100%',
     height: StyleSheet.hairlineWidth,
     backgroundColor: colors.lightGrey
   },
@@ -35,5 +37,10 @@ export const styles = StyleSheet.create({
   },
   conductContainer: {
     paddingRight: 5
+  },
+  copyright: {
+    width: '100%',
+    fontFamily: typography.fontMain,
+    textAlign: 'left'
   }
 });
