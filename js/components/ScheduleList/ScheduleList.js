@@ -45,7 +45,7 @@ const ScheduleList = ({ scheduleData, pushSession, faveSessions }) => {
 
 }
 
-SectionList.propTypes = {
+ScheduleList.propTypes = {
   scheduleData: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.number.isRequired,

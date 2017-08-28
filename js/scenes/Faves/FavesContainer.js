@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import realm from '../../config/models';
 import { fetchFaveData } from '../../redux/modules/faves';
-import { goToSession } from '../../navigation/navigationHelpers';
+import { goToSession } from '../../lib/navigationHelpers';
 
 class FavesContainer extends Component {
 
@@ -54,7 +54,23 @@ function mapStateToProps(state) {
 FavesContainer.propTypes = {
   loading: PropTypes.bool.isRequired,
   dispatch: PropTypes.func,
-
+  faves: PropTypes.arrayOf(
+    PropTypes.string
+  ),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          location: PropTypes.string,
+          title: PropTypes.string,
+          start_time: PropTypes.number,
+          description: PropTypes.string,
+          speaker: PropTypes.string
+        })
+      ),
+      title: PropTypes.number
+    })
+  ),
 }
 
 

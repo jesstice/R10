@@ -5,8 +5,6 @@ import {
 } from 'react-native';
 import ScheduleList from '../../components/ScheduleList/';
 
-import { styles } from './styles';
-
 const Faves = ({ favesData, pushSession, faves }) => {
   return (
     <View>

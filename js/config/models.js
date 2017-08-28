@@ -11,8 +11,6 @@ const Fave = {
 
 const realm = new Realm({schema: [Fave]});
 
-console.log('path', realm.path);
-
 export const createFave = (faveId) => {
   realm.write(() => {
     realm.create('Fave', {id: faveId, faved_on: new Date()})

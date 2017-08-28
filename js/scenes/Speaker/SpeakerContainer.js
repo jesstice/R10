@@ -5,7 +5,7 @@ import {
   ActivityIndicator,
   Linking
 } from 'react-native';
-import { popSpeaker } from '../../navigation/navigationHelpers';
+import { popSpeaker } from '../../lib/navigationHelpers';
 
 class SpeakerContainer extends Component {
 
@@ -38,12 +38,15 @@ class SpeakerContainer extends Component {
       );
      }
   }
+}
 
-  static propTypes = {
-    speakerData: PropTypes.shape({
-      // goes here
-    })
-  }
+SpeakerContainer.propTypes = {
+  speakerData: PropTypes.shape({
+    image: PropTypes.string,
+    name: PropTypes.string,
+    bio: PropTypes.string,
+    url: PropTypes.url
+  })
 }
 
 export default SpeakerContainer;

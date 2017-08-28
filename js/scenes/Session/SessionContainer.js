@@ -6,7 +6,7 @@ import {
   ActivityIndicator
 } from 'react-native';
 import { fetchSpeakerData, updateFaveStatus } from '../../redux/modules/session';
-import { goToSpeaker } from '../../navigation/navigationHelpers';
+import { goToSpeaker } from '../../lib/navigationHelpers';
 import { createFave, deleteFave } from '../../config/models';
 class SessionContainer extends Component {
 
@@ -56,31 +56,6 @@ class SessionContainer extends Component {
       );
     }
   }
-
-  static propTypes = {
-    sessionData: PropTypes.shape({
-      location: PropTypes.string,
-      title: PropTypes.string,
-      start_time: PropTypes.number,
-      description: PropTypes.string,
-      speaker: PropTypes.string,
-      session_id: PropTypes.string,
-    }),
-    loading: PropTypes.bool.isRequired,
-    data: PropTypes.shape({
-        bio: PropTypes.string,
-        name: PropTypes.string,
-        image: PropTypes.string,
-        speaker_id: PropTypes.string,
-        session: PropTypes.string,
-        url: PropTypes.string
-    }),
-    dispatch: PropTypes.func,
-    isFaved: PropTypes.bool.isRequired,
-    faves: PropTypes.arrayOf(
-      PropTypes.string
-    )
-  }
 }
 
 function mapStateToProps(state) {
@@ -90,6 +65,31 @@ function mapStateToProps(state) {
     faves: state.schedule.faves,
     isFaved: state.session.faveStatus
   }
+}
+
+SessionContainer.propTypes = {
+  sessionData: PropTypes.shape({
+    location: PropTypes.string,
+    title: PropTypes.string,
+    start_time: PropTypes.number,
+    description: PropTypes.string,
+    speaker: PropTypes.string,
+    session_id: PropTypes.string,
+  }),
+  loading: PropTypes.bool.isRequired,
+  data: PropTypes.shape({
+      bio: PropTypes.string,
+      name: PropTypes.string,
+      image: PropTypes.string,
+      speaker_id: PropTypes.string,
+      session: PropTypes.string,
+      url: PropTypes.string
+  }),
+  dispatch: PropTypes.func,
+  isFaved: PropTypes.bool.isRequired,
+  faves: PropTypes.arrayOf(
+    PropTypes.string
+  )
 }
 
 export default connect(mapStateToProps)(SessionContainer);

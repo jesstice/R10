@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import realm from '../../config/models';
 import { fetchScheduleData, getFaveSessions } from '../../redux/modules/schedule';
-import { goToSession } from '../../navigation/navigationHelpers';
+import { goToSession } from '../../lib/navigationHelpers';
 
 class ScheduleContainer extends Component {
 
@@ -69,6 +69,9 @@ ScheduleContainer.propTypes = {
         })
       )}
     )
+  ),
+  faves: PropTypes.arrayOf(
+    PropTypes.string
   )
 }
 
