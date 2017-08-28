@@ -1,5 +1,6 @@
 # R10 Developer Conference Mobile App
 
+![Screenshot](screeshot.jpg?raw=true)
 ## Description
 This native mobile app displays the schedule of events of an upcoming developer conference and allows users to fave events they want to keep track of. The app was built using React Native and supports both ios and Android devices. Realm is used to store user fave sessions in the app.
 

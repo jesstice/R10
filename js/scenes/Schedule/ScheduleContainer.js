@@ -20,7 +20,7 @@ class ScheduleContainer extends Component {
   componentDidMount() {
     this.props.dispatch(fetchScheduleData());
     this.props.dispatch(getFaveSessions());
-    realm.addListener('change', () => this.props.dispatch(getFaveSessions()));
+    realm.addListener("change", () => this.props.dispatch(getFaveSessions()));
   }
 
   pushSessionScene(item) {

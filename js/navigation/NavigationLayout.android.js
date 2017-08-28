@@ -61,7 +61,8 @@ class NavigationLayout extends Component {
         >
           <StackNavigation
             id="schedule"
-            initialRoute={Router.getRoute('schedule')}
+            navigatorUID="schedule"
+            initialRoute={Router.getRoute("schedule")}
             defaultRouteConfig={defaultRouteConfig}
           />
         </DrawerItem>
@@ -73,19 +74,21 @@ class NavigationLayout extends Component {
         >
           <StackNavigation
             id="faves"
-            initialRoute={Router.getRoute('faves')}
+            navigatorUID="faves"
+            initialRoute={Router.getRoute("faves")}
             defaultRouteConfig={defaultRouteConfig}
           />
         </DrawerItem>
         <DrawerItem
           id="about"
+          navigatorUID="about"
           selectedStyle={styles.selectedItemStyle}
           renderTitle={(isSelected) => this.renderTitle("About", isSelected)}
           renderIcon={(isSelected) => this.renderIcon("ios-information-circle", isSelected)}
         >
           <StackNavigation
             id="about"
-            initialRoute={Router.getRoute('about')}
+            initialRoute={Router.getRoute("about")}
             defaultRouteConfig={defaultRouteConfig}
           />
         </DrawerItem>
