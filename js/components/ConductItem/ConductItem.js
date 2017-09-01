@@ -4,6 +4,8 @@ import {
   View,
   Text,
   LayoutAnimation,
+  Platform,
+  UIManager,
   TouchableOpacity,
   Animated
 } from 'react-native';
@@ -16,6 +18,11 @@ class ConductItem extends Component {
     this.state = {
       display: false,
       spin: new Animated.Value(0)
+    }
+
+    if (Platform.OS === 'android') {
+      UIManager.setLayoutAnimationEnabledExperimental 
+      && UIManager.setLayoutAnimationEnabledExperimental(true);
     }
   }
 
