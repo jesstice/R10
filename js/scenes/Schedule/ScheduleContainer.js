@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Schedule from './Schedule';
-import {
-  ActivityIndicator
-} from 'react-native';
+import Loader from '../../components/Loader/';
 import realm from '../../config/models';
 import { fetchScheduleData, getFaveSessions } from '../../redux/modules/schedule';
 import { goToSession } from '../../lib/navigationHelpers';
@@ -30,7 +28,7 @@ class ScheduleContainer extends Component {
   render() {
     if (this.props.loading) {
       return (
-        <ActivityIndicator animating={true} size="small" color="black" />
+        <Loader />
       );
     } else {
       return (

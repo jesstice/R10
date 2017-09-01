@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Speaker from './Speaker';
+import Loader from '../../components/Loader/';
 import {
-  ActivityIndicator,
   Linking
 } from 'react-native';
 import { popSpeaker } from '../../lib/navigationHelpers';
@@ -26,7 +26,7 @@ class SpeakerContainer extends Component {
   render() {
     if (!this.props.speakerData) {
       return (
-       <ActivityIndicator animating={true} size="small" color="black" />
+        <Loader />
       );
      } else {
       return (

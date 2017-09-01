@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import About from './About';
-import {
-  ActivityIndicator
-} from 'react-native';
+import Loader from '../../components/Loader/';
 import { fetchConductData } from '../../redux/modules/conduct';
 
 class AboutContainer extends Component {
@@ -22,7 +20,7 @@ class AboutContainer extends Component {
   render() {
     if (this.props.loading) {
       return (
-       <ActivityIndicator animating={true} size="small" color="black" />
+        <Loader />
       );
      } else {
       return (
